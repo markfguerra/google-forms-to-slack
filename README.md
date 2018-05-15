@@ -9,7 +9,7 @@ Do you have a Google Form? Did you ever wish that you could get a Slack message 
 ## Setup
 You'll need a few things
 - A Google Sheet attached to your Google Form.
-- An Incoming Webhook integration for your Slack channel. Set this up in Slack, and make note of the URL it provides. You'll need it.
+- An Incoming Webhook integration for your Slack channel. Set this up in Slack and make note of the URL it provides, you'll need it. https://api.slack.com/incoming-webhooks
 
 Procedure
  - Open your Google Forms Spreadsheet.
