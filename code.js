@@ -24,7 +24,16 @@ var messagePretext = "A user submitted a response to the form.";
 // End customization //
 ///////////////////////
 
-// TODO Set up triggers programmatically
+function initialize() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i in triggers) {
+    ScriptApp.deleteTrigger(triggers[i]);
+  }
+  ScriptApp.newTrigger("submitValuesToSlack")
+    .forSpreadsheet(SpreadsheetApp.getActiveSpreadsheet())
+    .onFormSubmit()
+    .create();
+}
 
 // Trigger this on Form Submit
 function submitValuesToSlack(e) {
