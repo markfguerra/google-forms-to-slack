@@ -44,7 +44,7 @@ function submitValuesToSlack(e) {
   //   messagePretext = "Debugging our Sheets to Slack integration";
   // }
 
-  var attachments = constructAttachments(e.namedValues);
+  var attachments = constructAttachments(e.values);
 
   var payload = {
     "channel": postChannel,
@@ -62,8 +62,8 @@ function submitValuesToSlack(e) {
   var response = UrlFetchApp.fetch(slackIncomingWebhookUrl, options);
 }
 
-var constructAttachments = function(namedValues) {
-  var fields = makeFields(namedValues);
+var constructAttachments = function(values) {
+  var fields = makeFields(values);
 
   var attachments = [{
     "fallback" : messageFallback,
@@ -76,15 +76,15 @@ var constructAttachments = function(namedValues) {
   return attachments;
 }
 
-var makeFields = function(namedValues) {
+var makeFields = function(values) {
   var fields = [];
 
-  var keys = getKeys(namedValues);
+  var columnNames = getColumnNames();
 
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var value = namedValues[key][0];
-    fields.push(makeField(key, value));
+  for (var i = 0; i < columnNames.length; i++) {
+    var colName = columnNames[i];
+    var val = values[i];
+    fields.push(makeField(colName, val));
   }
 
   return fields;
@@ -99,12 +99,15 @@ var makeField = function(question, answer) {
   return field;
 }
 
-var getKeys = function(namedValues) {
-  var keys = [];
-  for (var key in namedValues) {
-    if (namedValues.hasOwnProperty(key)) {
-      keys.push(key);
-    }
-  }
-  return keys;
+// Extracts the column names from the first row of the spreadsheet
+var getColumnNames = function() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+
+  // Get the header row using A1 notation
+  var headerRow = sheet.getRange("1:1");
+
+  // Extract the values from it
+  var headerRowValues = headerRow.getValues()[0];
+
+  return headerRowValues;
 }
