@@ -24,6 +24,7 @@ var messagePretext = "A user submitted a response to the form.";
 // End customization //
 ///////////////////////
 
+// In the Script Editor, run initialize() at least once to make your code execute on form submit
 function initialize() {
   var triggers = ScriptApp.getProjectTriggers();
   for (var i in triggers) {
@@ -35,7 +36,7 @@ function initialize() {
     .create();
 }
 
-// Trigger this on Form Submit
+// Running the code in initialize() will cause this function to be triggered this on every Form Submit
 function submitValuesToSlack(e) {
   // Test code. uncomment to debug in Google Script editor
   // if (typeof e === "undefined") {

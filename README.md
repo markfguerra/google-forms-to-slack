@@ -15,9 +15,6 @@ Procedure
  - Open your Google Forms Spreadsheet.
  - In the menu, click on "Tools" -> "Script Editor".
  - Paste the code.js script into the Script Editor.
- - Edit the code you pasted to include the Slack Incoming Webhook URL in the customizations block; change the variable `slackIncomingWebhookUrl`. Also, set your channel name in `postChannel`.
- - In the menu for the script editor, Click "Resources" -> "All your triggers". You may be prompted to choose a project name, do so if necessary.
- - Agree to any permission requests.
- - Remove the existing trigger if you have one and click "Add new trigger". 
- - Use these values for your trigger, if it is not already there: `submitValuesToSlack` `From spreadsheet` `On form submit`
- - You're done. Try it out.
+ - Edit the code you pasted to include the Slack Incoming Webhook URL in the customizations block; change the variable `slackIncomingWebhookUrl` and then set your channel name in the variable `postChannel`. Save.
+ - Set up the event triggers by running the `initialize()` function. In the Script Editor's menu bar, select the function `initialize` and click Run. Agree to any permission requests.
+ - You're done! Try it out by submitting a response to your Google Form. If successful, you'll see a new message in your slack channel.
