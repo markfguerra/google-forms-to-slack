@@ -62,6 +62,9 @@ function submitValuesToSlack(e) {
   var response = UrlFetchApp.fetch(slackIncomingWebhookUrl, options);
 }
 
+// Creates Slack message attachments which contain the data from the Google Form
+// submission, which is passed in as a parameter
+// https://api.slack.com/docs/message-attachments
 var constructAttachments = function(values) {
   var fields = makeFields(values);
 
@@ -76,6 +79,7 @@ var constructAttachments = function(values) {
   return attachments;
 }
 
+// Creates an array of Slack fields containing the questions and answers
 var makeFields = function(values) {
   var fields = [];
 
@@ -90,6 +94,8 @@ var makeFields = function(values) {
   return fields;
 }
 
+// Creates a Slack field for your message
+// https://api.slack.com/docs/message-attachments#fields
 var makeField = function(question, answer) {
   var field = {
     "title" : question,
