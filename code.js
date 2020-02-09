@@ -20,6 +20,9 @@ var postColor = "#0000DD";
 var messageFallback = "The attachment must be viewed as plain text.";
 var messagePretext = "A user submitted a response to the form.";
 
+//Make this an empty array (i.e. [] ) to include all fields
+var selectedFields = ['Question Text'];
+
 ///////////////////////
 // End customization //
 ///////////////////////
@@ -84,11 +87,20 @@ var makeFields = function(values) {
   var fields = [];
 
   var columnNames = getColumnNames();
-
-  for (var i = 0; i < columnNames.length; i++) {
-    var colName = columnNames[i];
-    var val = values[i];
-    fields.push(makeField(colName, val));
+  selectedFields.forEach(function(field){
+    columnNames.forEach(function(column,idx){
+      if(column == field)
+        fields.push(makeField(column, values[idx]));      
+    });
+  });
+  
+  //If there were no fields or none matched, failsafe to just using them all
+  if(fields.length == 0) {
+    for (var i = 0; i < columnNames.length; i++) {
+      var colName = columnNames[i];
+      var val = values[i];
+      fields.push(makeField(colName, val));
+    }
   }
 
   return fields;
