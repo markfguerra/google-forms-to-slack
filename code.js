@@ -31,7 +31,7 @@ function initialize() {
     ScriptApp.deleteTrigger(triggers[i]);
   }
   ScriptApp.newTrigger("submitValuesToSlack")
-    .forSpreadsheet(SpreadsheetApp.getActiveSpreadsheet())
+    .forForm(FormApp.getActiveForm())
     .onFormSubmit()
     .create();
 }
@@ -66,14 +66,16 @@ function submitValuesToSlack(e) {
 // submission, which is passed in as a parameter
 // https://api.slack.com/docs/message-attachments
 var constructAttachments = function(values) {
-  var fields = makeFields(values);
+  // var fields = makeFields(values);
+  // The makeFields function seems buggy in the 
+  // new verison, so just comment them out temporarily 
 
   var attachments = [{
     "fallback" : messageFallback,
     "pretext" : messagePretext,
-    "mrkdwn_in" : ["pretext"],
+    //"mrkdwn_in" : ["pretext"],
     "color" : postColor,
-    "fields" : fields
+    //"fields" : fields
   }]
 
   return attachments;
