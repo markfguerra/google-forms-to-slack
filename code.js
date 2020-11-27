@@ -31,7 +31,7 @@ function initialize() {
     ScriptApp.deleteTrigger(triggers[i]);
   }
   ScriptApp.newTrigger("submitValuesToSlack")
-    .forSpreadsheet(SpreadsheetApp.getActiveSpreadsheet())
+    .forSpreadsheet(FormApp.getActiveForm().getDestinationId())
     .onFormSubmit()
     .create();
 }
