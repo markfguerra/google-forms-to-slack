@@ -13,7 +13,7 @@ You'll need a few things
 
 Procedure
  - Open your Google Forms Spreadsheet.
- - In the menu, click on "Tools" -> "Script Editor".
+ - In the menu, click on "Extensions" -> "Apps Script".
  - Paste the code.js script into the Script Editor.
  - Edit the code you pasted to include the Slack Incoming Webhook URL in the customizations block; change the variable `slackIncomingWebhookUrl` and then set your channel name in the variable `postChannel`. Save.
  - Set up the event triggers by running the `initialize()` function. In the Script Editor's menu bar, select the function `initialize` and click Run. Agree to any permission requests.
